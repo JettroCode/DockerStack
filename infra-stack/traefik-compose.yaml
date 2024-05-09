@@ -1,0 +1,32 @@
+version: "3.8"
+
+name: traefik
+
+services:
+  traefik:
+    env_file:
+      - path: ./traefik/.env.default
+        required: true
+      - path: ./traefik/.env
+        required: false
+    image: traefik:${TRAEFIK_TAG}
+    container_name: ${TRAEFIK_NAME}
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik/traefik.yaml:/traefik.yaml:ro
+    networks:
+      public:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.${BASE_DOMAIN}`)"
+      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+
+networks:
+  public:
+    name: public
+    external: true

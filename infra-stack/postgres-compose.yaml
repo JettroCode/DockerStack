@@ -1,0 +1,39 @@
+version: "3.8"
+
+name: postgres
+
+services:
+  postgres:
+    image: postgres:${POSTGRES_TAG}
+    env_file:
+      - path: ./postgres/.env.default # environments from here
+        required: true
+      - path: ./postgres/.env # overrided environments from here
+        required: false
+    container_name: ${POSTGRES_NAME}
+    restart: always
+    hostname: ${POSTGRES_HOSTNAME}
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      private:
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+
+volumes:
+  postgres:
+    name: postgres
+
+networks:
+  private:
+    name: private
+    external: true
+
+#secrets:
+
+#configs:

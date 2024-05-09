@@ -1,0 +1,41 @@
+version: "3.8"
+
+name: gitea
+
+services:
+  gitea:
+    image: gitea/gitea
+    env_file:
+      - path: ./gitea/.env.default # environments from here
+        required: true
+      - path: ./gitea/.env # overrided environments from here
+        required: false
+    container_name: gitea
+    restart: unless-stopped
+    volumes:
+      - gitea:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      private:
+      public:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.gitea.rule=Host(`gitea.${BASE_DOMAIN}`)"
+      - "traefik.http.services.gitea.loadbalancer.server.port=3000"
+
+volumes:
+  gitea:
+    name: gitea
+
+networks:
+  public:
+    name: public
+    external: true
+  private:
+    name: private
+    external: true
+
+#secrets:
+
+#configs:

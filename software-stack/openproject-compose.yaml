@@ -1,0 +1,13 @@
+version: "3.8"
+
+name: openproject
+
+services:
+
+volumes:
+
+networks:
+
+secrets:
+
+configs:

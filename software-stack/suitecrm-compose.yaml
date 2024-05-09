@@ -1,0 +1,13 @@
+version: "3.8"
+
+name: suitecrm
+
+services:
+
+volumes:
+
+networks:
+
+secrets:
+
+configs:

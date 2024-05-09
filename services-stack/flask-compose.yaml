@@ -1,0 +1,13 @@
+version: "3.8"
+
+name: flask
+
+services:
+
+volumes:
+
+networks:
+
+secrets:
+
+configs:

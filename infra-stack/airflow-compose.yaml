@@ -1,0 +1,26 @@
+version: "3.8"
+
+name: airflow
+
+services:
+  airflow:
+    image:
+    container_name: airflow
+    networks:
+      private:
+    volumes:
+      - airflow:/
+    labels:
+
+volumes:
+  airflow:
+    name: airflow
+
+networks:
+  private:
+    name: private
+    external: true
+
+#secrets:
+
+#configs:

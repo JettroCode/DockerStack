@@ -1,0 +1,17 @@
+api:
+  insecure: true
+
+log:
+  level: DEBUG
+
+providers:
+  docker:
+    exposedByDefault: false
+    network: public
+
+entryPoints:
+  http:
+    address: ":80"
+
+  https:
+    address: ":443"

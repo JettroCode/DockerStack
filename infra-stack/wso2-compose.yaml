@@ -1,0 +1,13 @@
+version: "3.8"
+
+name: wso2
+
+services:
+
+volumes:
+
+networks:
+
+secrets:
+
+configs:

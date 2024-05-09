@@ -1,0 +1,39 @@
+# -------
+# Keycloak: https://www.keycloak.org/
+# -------
+
+version: "3.8"
+
+name: keycloak
+
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0.4
+    env_file:
+      - path: ./keycloak/.env.default # environments from here
+        required: true
+      - path: ./keycloak/.env # overrided environments from here
+        required: false
+    container_name: keycloak
+    restart: always
+    networks:
+      public:
+      private:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.keycloak.rule=Host(`keycloak.${BASE_DOMAIN}`)"
+      - "traefik.http.services.keycloak.loadbalancer.server.port=8080"
+
+#volumes:
+
+networks:
+  public:
+    name: public
+    external: true
+  private:
+    name: private
+    external: true
+
+#secrets:
+
+#configs:

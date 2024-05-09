@@ -1,2 +1,1 @@
-# DockerStack
-DockerStack
+# Local Docker stack for learning and dev

@@ -1,0 +1,34 @@
+version: "3.8"
+
+name: adminer
+
+services:
+  adminer:
+    image: adminer
+    env_file:
+      - path: ./adminer/.env.default
+        required: true
+      - path: ./adminer/.env
+        required: false
+    container_name: adminer
+    restart: unless-stopped
+    networks:
+      public:
+      private:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.adminer.rule=Host(`adminer.${BASE_DOMAIN}`)"
+
+#volumes:
+
+networks:
+  public:
+    name: public
+    external: true
+  private:
+    name: private
+    external: true
+
+#secrets:
+
+#configs:
