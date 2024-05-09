@@ -5,7 +5,7 @@ name: portainer
 services:
   portainer:
     image: portainer/portainer-ce
-    container_name: portainer
+    container_name: ${PORTAINER_NAME}
     restart: unless-stopped
     networks:
       public:
