@@ -7,8 +7,13 @@ services:
     image: rabbitmq:${RABBITMQ_TAG}
     container_name: ${RABBITMQ_NAME}
     hostname: ${RABBITMQ_NAME}
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
     volumes:
       - ${RABBITMQ_NAME}:/var/lib/rabbitmq
+    networks:
+      private:
 
 volumes:
   rabbitmq:

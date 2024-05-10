@@ -4,17 +4,19 @@
 
 version: "3.8"
 
-name: keycloak
+name: ${KEYCLOAK_NAME}
 
 services:
   keycloak:
     image: quay.io/keycloak/keycloak:24.0.4
-    env_file:
-      - path: ./keycloak/.env.default # environments from here
-        required: true
-      - path: ./keycloak/.env # overrided environments from here
-        required: false
-    container_name: keycloak
+    environment:
+      - KC_DB=${KEYCLOAK_DB}
+      - KC_DB_URL=${KEYCLOAK_DB_URL}
+      - KC_DB_USERNAME=${KEYCLOAK_DB_USERNAME}
+      - KC_DB_PASSWORD=${KEYCLOAK_DB_PASSWORD}
+      - KC_HOSTNAME=${KEYCLOAK_HOSTNAME}
+      - KC_HOSTNAME_PORT=${KEYCLOAK_HOSTNAME_PORT}
+    container_name: ${KEYCLOAK_NAME}
     restart: always
     networks:
       public:
