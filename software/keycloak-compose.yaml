@@ -16,6 +16,10 @@ services:
       - KC_DB_PASSWORD=${KEYCLOAK_DB_PASSWORD}
       - KC_HOSTNAME=${KEYCLOAK_HOSTNAME}
       - KC_HOSTNAME_PORT=${KEYCLOAK_HOSTNAME_PORT}
+      - KEYCLOAK_ADMIN=${KEYCLOAK_ADMIN}
+      - KEYCLOAK_ADMIN_PASSWORD=${KEYCLOAK_ADMIN_PASSWORD}
+    command:
+      - start-dev
     container_name: ${KEYCLOAK_NAME}
     restart: always
     networks:
