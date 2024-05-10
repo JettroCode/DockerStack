@@ -8,7 +8,7 @@ name: ${KEYCLOAK_NAME}
 
 services:
   keycloak:
-    image: quay.io/keycloak/keycloak:24.0.4
+    image: quay.io/keycloak/keycloak:${KEYCLOAK_TAG}
     environment:
       - KC_DB=${KEYCLOAK_DB}
       - KC_DB_URL=${KEYCLOAK_DB_URL}
@@ -23,7 +23,7 @@ services:
       private:
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.keycloak.rule=Host(`keycloak.${BASE_DOMAIN}`)"
+      - "traefik.http.routers.keycloak.rule=Host(`${KEYCLOAK_NAME}.${BASE_DOMAIN}`)"
       - "traefik.http.services.keycloak.loadbalancer.server.port=8080"
 
 #volumes:
