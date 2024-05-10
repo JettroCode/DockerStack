@@ -1,9 +1,7 @@
-GITEA_NAME=gitea
-
 GITEA__database__DB_TYPE=postgres
 GITEA__database__HOST=postgres:5432
 GITEA__database__NAME=gitea
 GITEA__database__USER=gitea
 GITEA__database__PASSWD=gitea
-GITEA_USER_UID=1000
-GITEA_USER_GID=1000
+USER_UID=1000
+USER_GID=1000
