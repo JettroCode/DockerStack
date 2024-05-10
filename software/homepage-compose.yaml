@@ -1,24 +1,22 @@
 version: "3.8"
 
-name: homepage
+name: ${HOMEPAGE_NAME}
 
 services:
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
-    container_name: homepage
+    container_name: ${HOMEPAGE_NAME}
     restart: unless-stopped
     environment:
-      PUID: 1
-      GUID: 1
+      - PUID=${HOMEPAGE_PUID}
+      - GUID=${HOMEPAGE_GUID}
     volumes:
       - ./homepage/config:/app/config
     networks:
       public:
-    depends_on:
-      - traefik
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.homepage.rule=Host(`homepage.localhost.nip.io`)" # TODO: add some domain
+      - "traefik.http.routers.homepage.rule=Host(`homepage.${BASE_DOMAIN}`)"
       - "traefik.http.services.homepage.loadbalancer.server.port=3000"
 
 #volumes:
