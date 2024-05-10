@@ -4,15 +4,36 @@ name: ${OPENCART_NAME}
 
 services:
   opencart:
-    image:
+    image: bitnami/opencart:${OPENCART_TAG}
     container_name: ${OPENCART_NAME}
+    env_file:
+      - path: ./opencart/.opencart.default
+        required: false
+      - path: ./opencart/.opencart.custom
+        required: false
+    restart: unless-stopped
+    volumes:
+      - ${OPENCART_NAME}:/bitnami/opencart
+    networks:
+      public:
+      private:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${OPENCART_NAME}.rule=Host(`${OPENCART_NAME}.${BASE_DOMAIN}`)"
+      - "traefik.http.services.${OPENCART_NAME}.loadbalancer.server.port=8080"
 
 volumes:
   opencart:
     name: ${OPENCART_NAME}
 
 networks:
+  public:
+    name: public
+    external: true
+  private:
+    name: private
+    external: true
 
-secrets:
+#secrets:
 
-configs:
+#configs:
