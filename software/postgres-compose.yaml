@@ -12,7 +12,7 @@ services:
     restart: always
     hostname: ${POSTGRES_HOSTNAME}
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - ${POSTGRES_NAME}:/var/lib/postgresql/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     networks:
@@ -25,7 +25,7 @@ services:
 
 volumes:
   postgres:
-    name: postgres
+    name: ${POSTGRES_NAME}
 
 networks:
   private:
