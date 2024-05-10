@@ -1,16 +1,19 @@
 version: "3.8"
 
-name: gitea
+name: ${GITEA_NAME}
 
 services:
   gitea:
     image: gitea/gitea
-    env_file:
-      - path: ./gitea/.env.default # environments from here
-        required: true
-      - path: ./gitea/.env # overrided environments from here
-        required: false
-    container_name: gitea
+    environment:
+      - GITEA__database__DB_TYPE=${GITEA__database__DB_TYPE}
+      - GITEA__database__HOST=${GITEA__database__HOST}
+      - GITEA__database__NAME=${GITEA__database__NAME}
+      - GITEA__database__USER=${GITEA__database__USER}
+      - GITEA__database__PASSWD=${GITEA__database__PASSWD}
+      - USER_UID=${GITEA_USER_UID}
+      - USER_GID=${GITEA_USER_GID}
+    container_name: ${GITEA_NAME}
     restart: unless-stopped
     volumes:
       - gitea:/data
@@ -21,7 +24,7 @@ services:
       public:
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.gitea.rule=Host(`gitea.${BASE_DOMAIN}`)"
+      - "traefik.http.routers.gitea.rule=Host(`${GITEA_NAME}.${BASE_DOMAIN}`)"
       - "traefik.http.services.gitea.loadbalancer.server.port=3000"
 
 volumes:

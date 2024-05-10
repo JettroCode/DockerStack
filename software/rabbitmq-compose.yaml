@@ -1,13 +1,24 @@
 version: "3.8"
 
-name: rabbitmq
+name: ${RABBITMQ_NAME}
 
 services:
+  rabbitmq:
+    image: rabbitmq:${RABBITMQ_TAG}
+    container_name: ${RABBITMQ_NAME}
+    hostname: ${RABBITMQ_NAME}
+    volumes:
+      - ${RABBITMQ_NAME}:/var/lib/rabbitmq
 
 volumes:
+  rabbitmq:
+    name: ${RABBITMQ_NAME}
 
 networks:
+  private:
+    name: private
+    external: true
 
-secrets:
+#secrets:
 
-configs:
+#configs:
