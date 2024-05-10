@@ -1,13 +1,32 @@
 version: "3.8"
 
-name: mariadb
+name: ${MARIADB_NAME}
 
 services:
+  mariadb:
+    image: mariadb:${MARIADB_TAG}
+    container_name: ${MARIADB_NAME}
+    hostname: ${MARIADB_HOSTNAME}
+    env_file:
+      - path: ./mariadb/.mariadb.default
+        required: false
+      - path: ./mariadb/.mariadb.custom
+        required: false
+    restart: always
+    volumes:
+      - ${MARIADB_NAME}:/var/lib/mysql
+    networks:
+      private:
 
 volumes:
+  mariadb:
+    name: ${MARIADB_NAME}
 
 networks:
+  private:
+    name: private
+    external: true
 
-secrets:
+#secrets:
 
-configs:
+#configs:

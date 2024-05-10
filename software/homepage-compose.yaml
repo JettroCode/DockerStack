@@ -7,16 +7,18 @@ services:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: ${HOMEPAGE_NAME}
     restart: unless-stopped
-    environment:
-      - PUID=${HOMEPAGE_PUID}
-      - GUID=${HOMEPAGE_GUID}
+    env_file:
+      - path: ./homepage/.homepage.default
+        required: false
+      - path: ./homepage/.homepage.custom
+        required: false
     volumes:
-      - ./homepage/config:/app/config
+      - ${HOMEPAGE_CONFIG}:/app/config
     networks:
       public:
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.homepage.rule=Host(`homepage.${BASE_DOMAIN}`)"
+      - "traefik.http.routers.homepage.rule=Host(`${HOMEPAGE_NAME}.${BASE_DOMAIN}`)"
       - "traefik.http.services.homepage.loadbalancer.server.port=3000"
 
 #volumes:
