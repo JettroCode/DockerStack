@@ -1,13 +1,37 @@
 version: "3.8"
 
-name: redis
+name: ${REDIS_NAME}
 
 services:
+  redis:
+    image: redis:${REDIS_TAG}
+    container_name: ${REDIS_NAME}
+    env_file:
+      - path: ./redis/.redis.default
+        required: false
+      - path: ./redis/.redis.custom
+        required: false
+    hostname: ${REDIS_HOSTNAME}
+    restart: always
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      private:
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 30s
+      retries: 50
+      start_period: 30s
 
-volumes:
+#volumes:
 
 networks:
+  private:
+    name: private
+    external: true
 
-secrets:
+#secrets:
 
-configs:
+#configs:

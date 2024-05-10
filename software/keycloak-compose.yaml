@@ -25,6 +25,12 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.keycloak.rule=Host(`${KEYCLOAK_NAME}.${BASE_DOMAIN}`)"
       - "traefik.http.services.keycloak.loadbalancer.server.port=8080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://0.0.0.0:8080/realms/master"]
+      start_period: 10s
+      interval: 30s
+      retries: 5
+      timeout: 5s
 
 #volumes:
 
