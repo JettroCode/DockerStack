@@ -1,0 +1,17 @@
+# -------
+# Git: https://github.com/immich-app/immich
+# -------
+
+version: "3.8"
+
+name: ${IMMICH_NAME}
+
+services:
+
+volumes:
+
+networks:
+
+secrets:
+
+configs:

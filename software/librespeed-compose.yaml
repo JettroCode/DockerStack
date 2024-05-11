@@ -1,0 +1,17 @@
+# -------
+# Dockerhub: https://hub.docker.com/r/linuxserver/librespeed
+# -------
+
+version: "3.8"
+
+name: ${LIBRESPEED_NAME}
+
+services:
+
+volumes:
+
+networks:
+
+secrets:
+
+configs:

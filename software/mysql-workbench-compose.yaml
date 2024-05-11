@@ -1,0 +1,46 @@
+# -------
+# DockerHub: https://hub.docker.com/r/linuxserver/mysql-workbench
+# LinuxServer.io: https://docs.linuxserver.io/images/docker-mysql-workbench/
+# -------
+
+version: "3.8"
+
+name: ${MYSQL_WORKBENCH_NAME}
+
+services:
+  mysql-workbench:
+    image: lscr.io/linuxserver/mysql-workbench:${MYSQL_WORKBENCH_TAG}
+    container_name: ${MYSQL_WORKBENCH_NAME}
+    cap_add:
+      - IPC_LOCK
+    env_file:
+      - path: ./mysql-workbench/.mysql-workbench.default
+        required: false
+      - path: ./mysql-workbench/.mysql-workbench.custom
+        required: false
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ./mysql-workbench/config:/config
+    networks:
+      public:
+      private:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${MYSQL_WORKBENCH_NAME}.rule=Host(`${MYSQL_WORKBENCH_NAME}.${BASE_DOMAIN}`)"
+      - "traefik.http.services.${MYSQL_WORKBENCH_NAME}.loadbalancer.server.port=3000"
+
+#volumes:
+
+networks:
+  public:
+    name: public
+    external: true
+  private:
+    name: private
+    external: true
+
+#secrets:
+
+#configs:

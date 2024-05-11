@@ -1,0 +1,13 @@
+version: "3.8"
+
+name: ${GRAFANA_NAME}
+
+services:
+
+volumes:
+
+networks:
+
+secrets:
+
+configs:

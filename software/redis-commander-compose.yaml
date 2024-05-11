@@ -1,0 +1,42 @@
+# -------
+# Git: https://github.com/joeferner/redis-commander
+# -------
+
+version: "3.8"
+
+name: ${REDIS_COMMANDER_NAME}
+
+services:
+  redis-commander:
+    image: ghcr.io/joeferner/redis-commander:${REDIS_COMMANDER_TAG}
+    container_name: ${REDIS_COMMANDER_NAME}
+    env_file:
+      - path: ./redis-commander/.redis-commander.default
+        required: false
+      - path: ./redis-commander/.redis-commander.custom
+        required: false
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      public:
+      private:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${REDIS_COMMANDER_NAME}.rule=Host(`${REDIS_COMMANDER_NAME}.${BASE_DOMAIN}`)"
+      - "traefik.http.services.${REDIS_COMMANDER_NAME}.loadbalancer.server.port=8081"
+
+#volumes:
+
+networks:
+  public:
+    name: public
+    external: true
+  private:
+    name: private
+    external: true
+
+#secrets:
+
+#configs:
