@@ -1,20 +1,29 @@
 version: "3.8"
 
-name: mysql
+name: ${MYSQL_NAME}
 
 services:
   mysql:
-    image:
-    container_name: mysql
+    image: mysql:${MYSQL_TAG}
+    container_name: ${MYSQL_NAME}
+    env_file:
+      - path: ./mysql/.mysql.default
+        required: false
+      - path: ./mysql/.mysql.custom
+        required: false
+    hostname: ${MYSQL_HOSTNAME}
+    restart: always
     volumes:
-      - mysql:/
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ${MYSQL_NAME}:/var/lib/mysql
     networks:
       private:
-    #labels:
+    # TODO: add healthcheck
 
 volumes:
   mysql:
-    name: mysql
+    name: ${MYSQL_NAME}
 
 networks:
   private:
