@@ -1,6 +1,6 @@
 version: "3.8"
 
-name: ${FLASK_NAME}
+name: ${NODE_NAME}
 
 services:
 

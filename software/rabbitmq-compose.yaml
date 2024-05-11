@@ -1,3 +1,7 @@
+# -------
+# DockerHub: https://hub.docker.com/_/rabbitmq
+# -------
+
 version: "3.8"
 
 name: ${RABBITMQ_NAME}
@@ -6,10 +10,13 @@ services:
   rabbitmq:
     image: rabbitmq:${RABBITMQ_TAG}
     container_name: ${RABBITMQ_NAME}
-    hostname: ${RABBITMQ_NAME}
-    environment:
-      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
-      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+    hostname: ${RABBITMQ_HOSTNAME}
+    env_file:
+      - path: ./rabbitmq/.rabbitmq.default
+        required: false
+      - path: ./rabbitmq/.rabbitmq.custom
+        required: false
+    restart: always
     volumes:
       - ${RABBITMQ_NAME}:/var/lib/rabbitmq
     networks:
