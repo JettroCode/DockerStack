@@ -1,0 +1,17 @@
+# -------
+# DockerHub:
+# -------
+
+version: "3.8"
+
+name: ${POSTHOG_NAME}
+
+services:
+
+volumes:
+
+networks:
+
+secrets:
+
+configs:
