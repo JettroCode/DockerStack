@@ -5,8 +5,11 @@ name: ${ADMINER_NAME}
 services:
   adminer:
     image: adminer
-    environment:
-      - ADMINER_DESIGN=${ADMINER_DESIGN}
+    env_file:
+      - path: ./adminer/.adminer.default
+        required: false
+      - path: ./adminer/.adminer.custom
+        required: false
     container_name: ${ADMINER_NAME}
     restart: unless-stopped
     networks:
@@ -14,7 +17,7 @@ services:
       private:
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.adminer.rule=Host(`${ADMINER_NAME}.${BASE_DOMAIN}`)"
+      - "traefik.http.routers.${ADMINER_NAME}.rule=Host(`${ADMINER_NAME}.${BASE_DOMAIN}`)"
 
 #volumes:
 
