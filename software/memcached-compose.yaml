@@ -1,0 +1,34 @@
+# -------
+# DockerHub: https://hub.docker.com/_/memcached
+# -------
+
+version: "3.8"
+
+name: ${MEMCACHED_NAME}
+
+services:
+  memcached:
+    image: memcached:${MEMCACHED_TAG}
+    container_name: ${MEMCACHED_NAME}
+    env_file:
+      - path: ./memcached/.memcached.default
+        required: false
+      - path: ./memcached/.memcached.custom
+        required: false
+    restart: unless-stopped
+    networks:
+      private:
+
+#volumes:
+
+networks:
+  public:
+    name: public
+    external: true
+  private:
+    name: private
+    external: true
+
+#secrets:
+
+#configs:
