@@ -1,9 +1,12 @@
+# -------
+# DockerHub:
+# -------
+
 version: "3.8"
 
-name: ${KAFKA_NAME}
+name: ${MAGENTO_NAME}
 
 services:
-  kafka:
 
 volumes:
 

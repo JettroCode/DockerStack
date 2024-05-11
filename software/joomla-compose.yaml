@@ -1,0 +1,17 @@
+# -------
+# DockerHub: https://hub.docker.com/_/joomla
+# -------
+
+version: "3.8"
+
+name: ${JOOMLA_NAME}
+
+services:
+
+volumes:
+
+networks:
+
+secrets:
+
+configs:

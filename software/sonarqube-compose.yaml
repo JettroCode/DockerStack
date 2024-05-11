@@ -1,0 +1,17 @@
+# -------
+# DockerHub: https://hub.docker.com/_/sonarqube
+# -------
+
+version: "3.8"
+
+name: ${SONARQUBE_NAME}
+
+services:
+
+volumes:
+
+networks:
+
+secrets:
+
+configs:

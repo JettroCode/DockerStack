@@ -1,0 +1,17 @@
+# -------
+# DockerHub: https://hub.docker.com/_/varnish
+# -------
+
+version: "3.8"
+
+name: ${VARNISH_NAME}
+
+services:
+
+volumes:
+
+networks:
+
+secrets:
+
+configs:

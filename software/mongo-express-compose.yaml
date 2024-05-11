@@ -1,0 +1,17 @@
+# -------
+# DockerHub: https://hub.docker.com/_/mongo-express
+# -------
+
+version: "3.8"
+
+name: ${MONGO_EXPRESS_NAME}
+
+services:
+
+volumes:
+
+networks:
+
+secrets:
+
+configs:

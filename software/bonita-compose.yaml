@@ -1,0 +1,18 @@
+# -------
+# DockerHub: https://hub.docker.com/_/bonita
+# YouTube: https://www.youtube.com/channel/UCnRoJe2G4XsbvscGcBiIyAw
+# -------
+
+version: "3.8"
+
+name: ${BONITA_NAME}
+
+services:
+
+volumes:
+
+networks:
+
+secrets:
+
+configs:

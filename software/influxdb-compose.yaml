@@ -1,0 +1,17 @@
+# -------
+# DockerHub: https://hub.docker.com/_/influxdb
+# -------
+
+version: "3.8"
+
+name: ${INFLUXDB_NAME}
+
+services:
+
+volumes:
+
+networks:
+
+secrets:
+
+configs:

@@ -1,0 +1,17 @@
+# -------
+# DockerHub: https://hub.docker.com/_/logstash
+# -------
+
+version: "3.8"
+
+name: ${LOGSTASH_NAME}
+
+services:
+
+volumes:
+
+networks:
+
+secrets:
+
+configs:

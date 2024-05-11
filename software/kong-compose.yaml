@@ -1,0 +1,17 @@
+# -------
+# DockerHub: https://hub.docker.com/_/kong
+# -------
+
+version: "3.8"
+
+name: ${KONG_NAME}
+
+services:
+
+volumes:
+
+networks:
+
+secrets:
+
+configs:

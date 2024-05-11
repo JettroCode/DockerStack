@@ -1,0 +1,17 @@
+# -------
+# DockerHub: https://hub.docker.com/_/registry
+# -------
+
+version: "3.8"
+
+name: ${REGISTRY_NAME}
+
+services:
+
+volumes:
+
+networks:
+
+secrets:
+
+configs:
