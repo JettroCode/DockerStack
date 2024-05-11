@@ -1,4 +1,1 @@
-ADMINER_NAME=adminer
-
-# env vars
 ADMINER_DESIGN=nette
