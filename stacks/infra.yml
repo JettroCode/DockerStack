@@ -1,0 +1,33 @@
+version: "3.8"
+
+name: infra
+
+services:
+  nginx1:
+    image: nginx
+    container_name: nginx1
+    ports:
+      - 8085:80
+    networks:
+      public:
+  nginx2:
+    image: nginx
+    container_name: nginx2
+    ports:
+      - 8086:80
+    networks:
+      public:
+
+#volumes:
+
+networks:
+  public:
+    name: public
+    external: true
+  private:
+    name: private
+    external: true
+
+#secrets:
+
+#configs:
