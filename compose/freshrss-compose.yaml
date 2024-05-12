@@ -1,0 +1,17 @@
+# -------
+# GitHub: https://github.com/FreshRSS/FreshRSS
+# -------
+
+version: "3.8"
+
+name: ${FRESHRSS_NAME}
+
+services:
+
+volumes:
+
+networks:
+
+secrets:
+
+configs:

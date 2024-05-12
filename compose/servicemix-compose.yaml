@@ -1,0 +1,17 @@
+# -------
+# DockerHub:
+# -------
+
+version: "3.8"
+
+name: ${SERVICEMIX_NAME}
+
+services:
+
+volumes:
+
+networks:
+
+secrets:
+
+configs:
